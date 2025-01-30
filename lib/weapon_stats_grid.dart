@@ -58,7 +58,7 @@ class WeaponStatsList extends StatelessWidget {
                   ),
                 ),
                 const SizedBox(
-                  width: 30,
+                  width: 100,
                   child: Text(
                     "Keywords",
                     style: TextStyle(fontWeight: FontWeight.bold),
