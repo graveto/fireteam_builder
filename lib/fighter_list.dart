@@ -1,20 +1,19 @@
+import 'package:fireteam_builder/weapon_stats_grid.dart';
 import 'package:flutter/material.dart';
 
 import 'fighter.dart';
-
-//... (Fighter and Weapon class definitions)
+import 'fighter_stats_grid.dart';
 
 class FighterListWidget extends StatefulWidget {
   final List<Fighter> fighters;
 
-  const FighterListWidget({Key? key, required this.fighters}): super(key: key);
+  const FighterListWidget({super.key, required this.fighters});
 
   @override
   State<FighterListWidget> createState() => _FighterListWidgetState();
 }
 
 class _FighterListWidgetState extends State<FighterListWidget> {
-  // Store the index of the currently expanded item
   int? _expandedIndex;
 
   @override
@@ -23,24 +22,56 @@ class _FighterListWidgetState extends State<FighterListWidget> {
       itemCount: widget.fighters.length,
       itemBuilder: (context, index) {
         final fighter = widget.fighters[index];
-        return ExpansionTile(
-          title: Text(fighter.name),
-          // Control the expansion state
-          initiallyExpanded: _expandedIndex == index,
-          onExpansionChanged: (isExpanded) {
+        return ExpansionPanelList(
+          expansionCallback: (int itemIndex, bool isExpanded) {
             setState(() {
-              _expandedIndex = isExpanded? index: null;
+              _expandedIndex = isExpanded ? index : null;
             });
           },
           children: [
-            // Display fighter details here
-            ListTile(
-              title: Text("Energy Shield: ${fighter.energyShield}"),
+            ExpansionPanel(
+              headerBuilder: (BuildContext context, bool isExpanded) {
+                return ListTile(
+                  title: Text(
+                    fighter.name,
+                  ),
+                );
+              },
+              body: Column(
+                children: [
+                  Row(  // Row for Energy Shield and Role
+                    mainAxisAlignment: MainAxisAlignment.spaceAround,
+                    children: [
+                      Expanded(
+                        child: Column(
+                          children: [
+                            ListTile(
+                              title: Text("Energy Shield: ${fighter.energyShield}"),
+                            ),
+                          ],
+                        ),
+                      ),
+                      Expanded(
+                        child: Column(
+                          children: [
+                            ListTile(
+                              title: Text("Role: ${fighter.role}"),
+                            ),
+                          ],
+                        ),
+                      ),
+                    ],
+                  ),
+                  FighterStatsGrid(
+                    fighter: fighter,
+                  ),
+                  WeaponStatsList(
+                    weapons: fighter.weapons,
+                  ),
+                ],
+              ),
+              isExpanded: _expandedIndex == index,
             ),
-            ListTile(
-              title: Text("Role: ${fighter.role}"),
-            ),
-            // Add more details as needed...
           ],
         );
       },

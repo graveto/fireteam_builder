@@ -13,8 +13,9 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      debugShowCheckedModeBanner: false,
       home: Scaffold(
-        appBar: AppBar(title: const Text('Fighter List')),
+        appBar: AppBar(title: const Text('Select Fighters')),
         body: FighterListWidget(fighters: fighters), // Your widget here
       ),
     );
