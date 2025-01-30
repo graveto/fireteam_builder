@@ -18,6 +18,7 @@ class _FighterListWidgetState extends State<FighterListWidget> {
 
   @override
   Widget build(BuildContext context) {
+    widget.fighters.sort((a, b) => b.name.compareTo(a.name));
     return ListView.builder(
       itemCount: widget.fighters.length,
       itemBuilder: (context, index) {
