@@ -35,10 +35,18 @@ class _FighterListWidgetState extends State<FighterListWidget> {
     widget.fighters.sort((a, b) => b.name.compareTo(a.name));
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Select Fighters'),
+        title: Center(
+          child: const Text(
+            'Add Fighters',
+            style: TextStyle(
+              fontSize: 30,
+              fontWeight: FontWeight.bold,
+            ),
+          ),
+        ),
         actions: [
           IconButton(
-            icon: const Icon(Icons.check),
+            icon: const Icon(Icons.save_as_outlined),
             onPressed: () {
               widget.onFightersSelected(_selectedFighters);
               Navigator.pop(context);
@@ -54,7 +62,7 @@ class _FighterListWidgetState extends State<FighterListWidget> {
               fighter.weapons.map((weapon) => weapon.name);
           final isSelected = _selectedFighters.contains(fighter);
           return Container(
-            margin: const EdgeInsets.symmetric(vertical: 4.0),
+            margin: const EdgeInsets.symmetric(vertical: 4.0, horizontal: 4.0),
             color: Colors.white, // Set background color here
             child: ExpansionPanelList(
               elevation: 1, // Add elevation for a subtle shadow
@@ -66,23 +74,31 @@ class _FighterListWidgetState extends State<FighterListWidget> {
               },
               children: [
                 ExpansionPanel(
-                  backgroundColor: Colors.lightGreen,
+                  backgroundColor: Colors.white,
                   headerBuilder: (BuildContext context, bool isExpanded) {
                     return Container(
+                      height: 100,
                       color: isExpanded
-                          ? Colors.green[900]
-                          : Colors.lightGreen, // Set background color here
+                          ? Color.fromARGB(255, 54, 75, 68)
+                          : Color.fromARGB(
+                              255, 150, 161, 148), // Set background color here
                       child: ListTile(
                         title: Text(
                           fighter.name,
                           style: TextStyle(
+                            fontSize: 20,
+                            fontWeight: FontWeight.bold,
                             color: isExpanded
-                                ? Colors.lightGreen
-                                : Colors.green[900],
+                                ? Color.fromARGB(255, 150, 161, 148)
+                                : Color.fromARGB(255, 54, 75, 68),
                           ),
                         ),
                         subtitle: Text(
                           uniqueWeaponNames.toSet().toList().join(', '),
+                          style: TextStyle(
+                            fontSize: 16,
+                            color: Color.fromARGB(255, 54, 75, 68),
+                          ),
                         ),
                         trailing: IconButton(
                           icon: isSelected

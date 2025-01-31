@@ -88,9 +88,12 @@ class _FireteamListWidgetState extends State<FireteamListWidget> {
               alignment: Alignment.bottomCenter,
               child: Padding(
                 padding: const EdgeInsets.only(bottom: 100.0),
-                child: const Text(
+                child: Text(
                   'Build your first fireteam',
-                  style: TextStyle(fontSize: 18),
+                  style: TextStyle(
+                    fontSize: 20,
+                    color: Color.fromARGB(255, 54, 75, 68),
+                  ),
                 ),
               ),
             )
@@ -100,12 +103,23 @@ class _FireteamListWidgetState extends State<FireteamListWidget> {
               itemBuilder: (context, index) {
                 final fireteam = _fireteams[index];
                 return ListTile(
-                  title: Text(fireteam.name),
+                  title: Text(
+                    fireteam.name,
+                    style: TextStyle(
+                      fontSize: 22,
+                      fontWeight: FontWeight.bold,
+                      color: Color.fromARGB(255, 54, 75, 68),
+                    ),
+                  ),
                   subtitle: Text(
                     fireteam.fighters
                         .map((fighter) => fighter.name)
                         .toList()
                         .join(', '),
+                    style: TextStyle(
+                      fontSize: 18,
+                      color: Color.fromARGB(255, 54, 75, 68),
+                    ),
                   ),
                   // Add more details or actions here if needed
                 );
@@ -144,6 +158,10 @@ class _FireteamListWidgetState extends State<FireteamListWidget> {
                   ),
                 );
               },
+              backgroundColor: Color.fromARGB(255, 54, 75, 68),
+              foregroundColor: Color.fromARGB(255, 150, 161, 148),
+              // Light green foreground (icon)
+              shape: const CircleBorder(),
               child: const Icon(Icons.add),
             ),
           ),

@@ -37,7 +37,15 @@ class _CreateFireteamWidgetState extends State<CreateFireteamWidget> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Create Fireteam'),
+        title: Center(
+          child: Text(
+            'Create Fireteam',
+            style: TextStyle(
+              fontSize: 30,
+              fontWeight: FontWeight.bold,
+            ),
+          ),
+        ),
       ),
       body: Padding(
         padding: const EdgeInsets.all(16.0),
@@ -47,29 +55,32 @@ class _CreateFireteamWidgetState extends State<CreateFireteamWidget> {
             TextField(
               controller: _fireteamNameController,
               decoration: const InputDecoration(
-                labelText: 'Fireteam Name',
+                labelText: 'Enter Fireteam Name',
                 border: OutlineInputBorder(),
               ),
-            ),
-            const SizedBox(height: 20),
-            ElevatedButton(
-              onPressed: _fireteamName.trim().isEmpty
-                  ? null
-                  : () {
-                      // Get the fireteam name from the text field
-                      String fireteamName = _fireteamNameController.text.trim();
-
-                      // Create a new fireteam
-                      Fireteam newFireteam = Fireteam(fireteamName);
-
-                      // Call the callback function to add the fireteam to the list
-                      widget.onFireteamCreated(newFireteam);
-                    },
-              child: const Text('Create'),
             ),
           ],
         ),
       ),
+      floatingActionButton: FloatingActionButton(
+        onPressed: _fireteamName.trim().isEmpty
+            ? null
+            : () {
+                // Get the fireteam name from the text field
+                String fireteamName = _fireteamNameController.text.trim();
+
+                // Create a new fireteam
+                Fireteam newFireteam = Fireteam(fireteamName);
+
+                // Call the callback function to add the fireteam to the list
+                widget.onFireteamCreated(newFireteam);
+              },
+        shape: const CircleBorder(),
+        backgroundColor: Color.fromARGB(255, 54, 75, 68),
+        foregroundColor: Color.fromARGB(255, 150, 161, 148),
+        child: const Icon(Icons.add),
+      ),
+      floatingActionButtonLocation: FloatingActionButtonLocation.endFloat,
     );
   }
 }

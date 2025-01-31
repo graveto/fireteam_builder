@@ -19,10 +19,10 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       theme: ThemeData(
-        scaffoldBackgroundColor: Colors.orange[100],
+        scaffoldBackgroundColor: Color.fromARGB(255, 150, 161, 148),
         appBarTheme: AppBarTheme(
-          backgroundColor: Colors.orange[100],
-          foregroundColor: Colors.white,
+          backgroundColor: Color.fromARGB(255, 54, 75, 68),
+          foregroundColor: Color.fromARGB(255, 150, 161, 148),
         ),
       ),
       home: Scaffold(
@@ -31,7 +31,8 @@ class MyApp extends StatelessWidget {
             child: Text(
               'Fireteams',
               style: TextStyle(
-                color: Colors.green[900],
+                fontSize: 30,
+                fontWeight: FontWeight.bold,
               ),
             ),
           ),
