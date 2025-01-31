@@ -1,3 +1,4 @@
+import 'package:fireteam_builder/fireteam_list.dart';
 import 'package:fireteam_builder/selected_fighters_widget.dart';
 import 'package:flutter/material.dart';
 
@@ -26,14 +27,17 @@ class MyApp extends StatelessWidget {
       ),
       home: Scaffold(
         appBar: AppBar(
-          title: Text(
-            'Select Fighters',
-            style: TextStyle(
-              color: Colors.green[900],
+          title: Center(
+            child: Text(
+              'Fireteams',
+              style: TextStyle(
+                color: Colors.green[900],
+              ),
             ),
           ),
         ),
-        body: SelectedFightersWidget(), // Set SelectedFightersWidget as the initial screen
+        body:
+            FireteamListWidget(), // Set SelectedFightersWidget as the initial screen
       ),
     );
   }

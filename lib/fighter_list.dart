@@ -7,9 +7,14 @@ import 'fighter_stats_grid.dart';
 class FighterListWidget extends StatefulWidget {
   final List<Fighter> fighters;
   final List<Fighter> selectedFighters;
+  final Function(List<Fighter>) onFightersSelected;
 
-  const FighterListWidget(
-      {super.key, required this.fighters, required this.selectedFighters});
+  const FighterListWidget({
+    super.key,
+    required this.fighters,
+    required this.selectedFighters,
+    required this.onFightersSelected,
+  });
 
   @override
   State<FighterListWidget> createState() => _FighterListWidgetState();
@@ -22,19 +27,32 @@ class _FighterListWidgetState extends State<FighterListWidget> {
   @override
   void initState() {
     super.initState();
-    _selectedFighters = widget.selectedFighters;
+    _selectedFighters = List<Fighter>.from(widget.selectedFighters);
   }
 
   @override
   Widget build(BuildContext context) {
     widget.fighters.sort((a, b) => b.name.compareTo(a.name));
     return Scaffold(
+      appBar: AppBar(
+        title: const Text('Select Fighters'),
+        actions: [
+          IconButton(
+            icon: const Icon(Icons.check),
+            onPressed: () {
+              widget.onFightersSelected(_selectedFighters);
+              Navigator.pop(context);
+            },
+          ),
+        ],
+      ),
       body: ListView.builder(
         itemCount: widget.fighters.length,
         itemBuilder: (context, index) {
           final fighter = widget.fighters[index];
           final uniqueWeaponNames =
               fighter.weapons.map((weapon) => weapon.name);
+          final isSelected = _selectedFighters.contains(fighter);
           return Container(
             margin: const EdgeInsets.symmetric(vertical: 4.0),
             color: Colors.white, // Set background color here
@@ -67,13 +85,19 @@ class _FighterListWidgetState extends State<FighterListWidget> {
                           uniqueWeaponNames.toSet().toList().join(', '),
                         ),
                         trailing: IconButton(
-                          icon: const Icon(Icons.add_circle),
+                          icon: isSelected
+                              ? const Icon(Icons.remove_circle)
+                              : const Icon(Icons.add_circle),
                           color: Colors.white,
                           onPressed: () {
                             setState(() {
-                              _selectedFighters.add(fighter);
+                              // _selectedFighters.add(fighter);
+                              if (isSelected) {
+                                _selectedFighters.remove(fighter);
+                              } else {
+                                _selectedFighters.add(fighter);
+                              }
                             });
-                            Navigator.pop(context, _selectedFighters);
                           },
                         ),
                       ),

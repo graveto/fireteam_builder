@@ -43,6 +43,7 @@ class _SelectedFightersWidgetState extends State<SelectedFightersWidget> {
                             builder: (context) => FighterListWidget(
                               fighters: fighters,
                               selectedFighters: _selectedFighters,
+                              onFightersSelected: (fighters) {},
                             ),
                           ),
                         );
@@ -168,6 +169,7 @@ class _SelectedFightersWidgetState extends State<SelectedFightersWidget> {
                                 builder: (context) => FighterListWidget(
                                   fighters: fighters,
                                   selectedFighters: _selectedFighters,
+                                  onFightersSelected: (fighters) {},
                                 ),
                               ),
                             );
