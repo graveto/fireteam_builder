@@ -1,5 +1,44 @@
-import 'package:fireteam_builder/fighter.dart';
-import 'package:fireteam_builder/weapon.dart';
+class Fighter {
+  final String name;
+  final int energyShield;
+  final String role;
+  final int sp;
+  final int ra;
+  final int fi;
+  final int sv;
+  final int ar;
+  final int hp;
+  final List<Weapon> weapons;
+
+  Fighter({
+    required this.name,
+    required this.energyShield,
+    required this.role,
+    required this.sp,
+    required this.ra,
+    required this.fi,
+    required this.sv,
+    required this.ar,
+    required this.hp,
+    required this.weapons,
+  });
+}
+
+class Weapon {
+  final String name;
+  final String type;
+  final String range;
+  final int ap;
+  final List<String> keywords;
+
+  Weapon({
+    required this.name,
+    required this.type,
+    required this.range,
+    required this.ap,
+    required this.keywords,
+  });
+}
 
 var fighters = [
   Fighter(

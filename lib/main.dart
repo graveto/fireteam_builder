@@ -1,14 +1,8 @@
-import 'package:fireteam_builder/fireteam_list.dart';
-import 'package:fireteam_builder/selected_fighters_widget.dart';
 import 'package:flutter/material.dart';
-
-import 'data/fighters.dart';
-import 'fighter_list.dart';
+import 'package:fireteam_builder/screens/team_list_screen.dart';
 
 void main() {
-  runApp(
-    MyApp(),
-  );
+  runApp(MyApp());
 }
 
 class MyApp extends StatelessWidget {
@@ -18,28 +12,21 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
+      title: 'Team Builder',
       theme: ThemeData(
-        scaffoldBackgroundColor: Color.fromARGB(255, 150, 161, 148),
+        primaryColor: Color(0xFF003819), // Dark green
+        colorScheme: ColorScheme.fromSwatch(
+          primarySwatch: Colors.green, // Base color for the theme
+          accentColor: Color(0xFFCBB576), // Goldish yellow
+        ),
+        scaffoldBackgroundColor: Color(0xFF0B1A0C),
         appBarTheme: AppBarTheme(
-          backgroundColor: Color.fromARGB(255, 54, 75, 68),
-          foregroundColor: Color.fromARGB(255, 150, 161, 148),
-        ),
+          backgroundColor: Color(0xFF0B1A0C), // Dark green for app bar
+          foregroundColor: Colors.white, // White text color for app bar
+        ), // Very dark green
+        // Add more theme properties as needed
       ),
-      home: Scaffold(
-        appBar: AppBar(
-          title: Center(
-            child: Text(
-              'Fireteams',
-              style: TextStyle(
-                fontSize: 30,
-                fontWeight: FontWeight.bold,
-              ),
-            ),
-          ),
-        ),
-        body:
-            FireteamListWidget(), // Set SelectedFightersWidget as the initial screen
-      ),
+      home: TeamListScreen(),
     );
   }
 }
