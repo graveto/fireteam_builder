@@ -22,6 +22,17 @@ class Fighter {
     required this.hp,
     required this.weapons,
   });
+
+  Fighter.fromMap(Map<String, dynamic> map, this.weapons)
+      : name = map['name'],
+        energyShield = map['energyShield'],
+        role = map['role'],
+        sp = map['sp'],
+        ra = map['ra'],
+        fi = map['fi'],
+        sv = map['sv'],
+        ar = map['ar'],
+        hp = map['hp'];
 }
 
 class Weapon {
@@ -38,6 +49,13 @@ class Weapon {
     required this.ap,
     required this.keywords,
   });
+
+  Weapon.fromMap(Map<String, dynamic> map)
+      : name = map['name'],
+        type = map['type'],
+        range = map['range'],
+        ap = map['ap'],
+        keywords = map['keywords'].split(',');
 }
 
 var fighters = [

@@ -30,7 +30,8 @@ class _AddFightersScreenState extends State<AddFightersScreen> {
             color: Colors.green,
             // Wrap FighterListItem in a Card
             shape: RoundedRectangleBorder(
-              borderRadius: BorderRadius.zero, // Set border radius to zero
+              borderRadius: BorderRadius.all(
+                  Radius.circular(5.0)), // Set border radius to zero
             ),
             child: FighterListItem(
               fighter: fighter,
