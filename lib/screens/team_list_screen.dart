@@ -22,7 +22,12 @@ class _TeamListScreenState extends State<TeamListScreen> {
       ),
       body: teams.isEmpty
           ? Center(
-              child: Text('No teams yet. Create one!'),
+              child: Text(
+                'No teams yet. Create one!',
+                style: TextStyle(
+                  color: Colors.white,
+                ),
+              ),
             )
           : ListView.builder(
               itemCount: teams.length,
@@ -30,8 +35,11 @@ class _TeamListScreenState extends State<TeamListScreen> {
                 final team = teams[index];
                 return Card(
                   shape: RoundedRectangleBorder(
-                    borderRadius:
-                        BorderRadius.zero, // Set border radius to zero
+                    borderRadius: BorderRadius.all(
+                      Radius.circular(
+                        5.0,
+                      ),
+                    ), // Set border radius to zero
                   ),
                   color: Colors.green, // Wrap ListTile in a Card
                   child: ListTile(
@@ -93,6 +101,7 @@ class _TeamListScreenState extends State<TeamListScreen> {
             }
           });
         },
+        foregroundColor: Color(0xFF0B1A0C),
         child: Icon(Icons.add),
       ),
     );

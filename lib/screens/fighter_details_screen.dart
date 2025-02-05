@@ -8,6 +8,7 @@ class FighterDetailsScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final textStyle = TextStyle(color: Colors.white);
     return Scaffold(
       appBar: AppBar(
         title: Text(fighter.name),
@@ -17,26 +18,33 @@ class FighterDetailsScreen extends StatelessWidget {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Text('Energy Shield: ${fighter.energyShield}'),
-            Text('Role: ${fighter.role}'),
-            Text('SP: ${fighter.sp}'),
-            Text('RA: ${fighter.ra}'),
-            Text('FI: ${fighter.fi}'),
-            Text('SV: ${fighter.sv}'),
-            Text('AR: ${fighter.ar}'),
-            Text('HP: ${fighter.hp}'),
+            Text('Energy Shield: ${fighter.energyShield}', style: textStyle),
+            Text('Role: ${fighter.role}', style: textStyle),
+            Text('SP: ${fighter.sp}', style: textStyle),
+            Text('RA: ${fighter.ra}', style: textStyle),
+            Text('FI: ${fighter.fi}', style: textStyle),
+            Text('SV: ${fighter.sv}', style: textStyle),
+            Text('AR: ${fighter.ar}', style: textStyle),
+            Text('HP: ${fighter.hp}', style: textStyle),
             SizedBox(height: 20),
-            Text('Weapons:', style: TextStyle(fontWeight: FontWeight.bold)),
+            Text(
+              'Weapons:',
+              style: TextStyle(
+                fontWeight: FontWeight.bold,
+                color: Colors.white,
+              ),
+            ),
             ...fighter.weapons.map(
               (weapon) => ListTile(
-                title: Text(weapon.name),
+                title: Text(weapon.name, style: textStyle),
                 subtitle: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    Text('Type: ${weapon.type}'),
-                    Text('Range: ${weapon.range}'),
-                    Text('AP: ${weapon.ap}'),
-                    Text('Keywords: ${weapon.keywords.join(', ')}'),
+                    Text('Type: ${weapon.type}', style: textStyle),
+                    Text('Range: ${weapon.range}', style: textStyle),
+                    Text('AP: ${weapon.ap}', style: textStyle),
+                    Text('Keywords: ${weapon.keywords.join(', ')}',
+                        style: textStyle),
                   ],
                 ),
               ),
