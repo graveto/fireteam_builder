@@ -33,7 +33,7 @@ class _CreateTeamScreenState extends State<CreateTeamScreen> {
                 ),
                 validator: (value) {
                   if (value == null || value.isEmpty) {
-                    return 'Please enter a team name';
+                    return 'Please Enter Team Name';
                   }
                   return null;
                 },
@@ -63,7 +63,7 @@ class _CreateTeamScreenState extends State<CreateTeamScreen> {
                     }
                   }
                 },
-                child: Text('Add Characters'),
+                child: Text('Add Fighters'),
               ),
             ],
           ),

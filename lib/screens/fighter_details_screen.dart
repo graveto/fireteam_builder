@@ -11,21 +11,95 @@ class FighterDetailsScreen extends StatelessWidget {
     final textStyle = TextStyle(color: Colors.white);
     return Scaffold(
       appBar: AppBar(
-        title: Text(fighter.name),
+        title: Text(
+          fighter.name,
+        ),
       ),
       body: Padding(
         padding: const EdgeInsets.all(16.0),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Text('Energy Shield: ${fighter.energyShield}', style: textStyle),
-            Text('Role: ${fighter.role}', style: textStyle),
-            Text('SP: ${fighter.sp}', style: textStyle),
-            Text('RA: ${fighter.ra}', style: textStyle),
-            Text('FI: ${fighter.fi}', style: textStyle),
-            Text('SV: ${fighter.sv}', style: textStyle),
-            Text('AR: ${fighter.ar}', style: textStyle),
-            Text('HP: ${fighter.hp}', style: textStyle),
+            Row(
+              children: [
+                Text('Energy Shield:', style: textStyle),
+                const SizedBox(width: 8), // Add some spacing
+                Text('(${fighter.energyShield})', style: textStyle),
+                const SizedBox(width: 64), // Add some spacing
+                Text('Role:', style: textStyle),
+                const SizedBox(width: 8), // Add some spacing
+                Text(fighter.role, style: textStyle),
+              ],
+            ),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceAround,
+              children: [
+                Expanded(
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceAround,
+                    children: [
+                      Column(
+                        children: [
+                          Text('SP', style: textStyle),
+                        ],
+                      ),
+                      Column(
+                        children: [
+                          Text('RA', style: textStyle),
+                        ],
+                      ),
+                      Column(
+                        children: [
+                          Text('FI', style: textStyle),
+                        ],
+                      ),
+                    ],
+                  ),
+                ),
+                Expanded(
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceAround,
+                    children: [
+                      Column(
+                        children: [
+                          Text(fighter.sp, style: textStyle),
+                        ],
+                      ),
+                      Column(
+                        children: [
+                          Text(fighter.ra, style: textStyle),
+                        ],
+                      ),
+                      Column(
+                        children: [
+                          Text(fighter.fi, style: textStyle),
+                        ],
+                      ),
+                    ],
+                  ),
+                ),
+              ],
+            ),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceAround,
+              children: [
+                Column(
+                  children: [
+                    Text('SV: ${fighter.sv}', style: textStyle),
+                  ],
+                ),
+                Column(
+                  children: [
+                    Text('AR: ${fighter.ar}', style: textStyle),
+                  ],
+                ),
+                Column(
+                  children: [
+                    Text('HP: ${fighter.hp}', style: textStyle),
+                  ],
+                ),
+              ],
+            ),
             SizedBox(height: 20),
             Text(
               'Weapons:',

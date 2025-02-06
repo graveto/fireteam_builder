@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:fireteam_builder/models/team.dart';
 import 'package:fireteam_builder/screens/create_team_screen.dart';
 
+import '../helpers/database_helper.dart';
 import 'edit_team_screen.dart';
 
 class TeamListScreen extends StatefulWidget {
@@ -13,6 +14,21 @@ class TeamListScreen extends StatefulWidget {
 
 class _TeamListScreenState extends State<TeamListScreen> {
   List<Team> teams = [];
+
+  @override
+  void initState() {
+    super.initState();
+    _loadTeams();
+  }
+
+  void _loadTeams() async {
+    final dbHelper = DatabaseHelper.instance;
+    await dbHelper.seedFighters();
+    List<Team> fetchedTeams = await dbHelper.getTeams();
+    setState(() {
+      teams = fetchedTeams;
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -59,7 +75,7 @@ class _TeamListScreenState extends State<TeamListScreen> {
                               context,
                               MaterialPageRoute(
                                 builder: (context) =>
-                                    EditTeamScreen(team: team),
+                                    EditTeamScreen(teamId: team.id),
                               ),
                             ).then((updatedTeam) {
                               if (updatedTeam != null) {
@@ -72,11 +88,12 @@ class _TeamListScreenState extends State<TeamListScreen> {
                         ),
                         IconButton(
                           icon: Icon(Icons.delete),
-                          onPressed: () {
+                          onPressed: () async {
                             // Remove the team from the list
-                            setState(() {
-                              teams.removeAt(index);
-                            });
+                            final dbHelper = DatabaseHelper.instance;
+                            await dbHelper.deleteTeam(
+                                team.id); // Delete the team from the database
+                            _loadTeams();
                           },
                         ),
                       ],
@@ -95,9 +112,10 @@ class _TeamListScreenState extends State<TeamListScreen> {
             MaterialPageRoute(builder: (context) => CreateTeamScreen()),
           ).then((newTeam) {
             if (newTeam != null) {
-              setState(() {
-                teams.add(newTeam);
-              });
+              _loadTeams();
+              // setState(() {
+              //   teams.add(newTeam);
+              // });
             }
           });
         },
